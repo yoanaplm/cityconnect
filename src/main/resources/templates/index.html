@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>CityConnect</title>
+</head>
+<body>
+<h1>CityConnect</h1>
+<div th:if="${username == null}">
+  <a th:href="@{/login}">Log in</a>
+  <a th:href="@{/register}">Register</a>
+</div>
+<div th:if="${username != null}">
+  <p th:text="'Welcome, ' + ${username}"></p>
+  <form th:action="@{/logout}" method="post">
+    <button type="submit">Log out</button>
+  </form>
+</div>
+
+</body>
+</html>
