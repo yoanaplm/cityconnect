@@ -56,5 +56,10 @@ public class GlobalExceptionHandler {
         modelAndView.addObject("message", message);
         return modelAndView;
     }
+    @ExceptionHandler(ParticipationNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public ModelAndView handleParticipationNotFound(ParticipationNotFoundException ex) {
+        return buildErrorPage(ex.getMessage());
+    }
 
 }

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>My activities</title>
+</head>
+<body>
+<h1>My activities</h1>
+<a th:href="@{/}">Home</a>
+<a th:href="@{/activities}">Browse activities</a>
+
+<p th:if="${participations.isEmpty()}">You have not joined any activities yet.</p>
+
+<table th:if="${!participations.isEmpty()}">
+    <tr>
+        <th>Title</th>
+        <th>City</th>
+        <th>Starts</th>
+        <th>Status</th>
+        <th></th>
+    </tr>
+    <tr th:each="participation : ${participations}">
+        <td th:text="${participation.activityTitle}"></td>
+        <td th:text="${participation.city}"></td>
+        <td th:text="${#temporals.format(participation.startsAt, 'dd.MM.yyyy HH:mm')}"></td>
+        <td th:text="${participation.status}"></td>
+        <td>
+            <form th:action="@{/my-activities/{id}/cancel(id=${participation.registrationId})}" method="post">
+                <button type="submit">Cancel</button>
+            </form>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

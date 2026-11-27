@@ -12,6 +12,7 @@
 </div>
 <div th:if="${username != null}">
     <p th:text="'Welcome, ' + ${username}"></p>
+    <a th:href="@{/my-activities}">My activities</a>
     <a th:href="@{/activities}">Activities</a>
     <form th:action="@{/logout}" method="post">
         <button type="submit">Log out</button>

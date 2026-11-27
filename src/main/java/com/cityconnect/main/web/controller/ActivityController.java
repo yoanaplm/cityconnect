@@ -36,7 +36,7 @@ public class ActivityController {
     @PostMapping("/{id}/join")
     public ModelAndView join(@PathVariable UUID id, @AuthenticationPrincipal AuthenticationDetails details){
         participationService.join(details.getUserId(), id);
-        return new ModelAndView("redirect:/activities");
+        return new ModelAndView("redirect:/my-activities");
 
 
 
