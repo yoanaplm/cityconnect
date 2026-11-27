@@ -7,6 +7,7 @@
 <body>
 <h1>Register</h1>
 <a th:href="@{/}">Home</a>
+<p th:if="${errorMessage}" th:text="${errorMessage}"></p>
 <form th:action="@{/register}" th:object="${registerRequest}" method="post">
     <div>
         <label for="username">Username</label>
