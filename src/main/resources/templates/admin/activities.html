@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Manage activities</title>
+</head>
+<body>
+<h1>Manage activities</h1>
+<a th:href="@{/}">Home</a>
+<a th:href="@{/admin/activities/new}">Add new activity</a>
+
+<p th:if="${activities.isEmpty()}">No upcoming activities.</p>
+<table th:if="${!activities.isEmpty()}">
+    <tr>
+        <th>Title</th>
+        <th>City</th>
+        <th>Starts</th>
+        <th>Capacity</th>
+    </tr>
+    <tr th:each="activity : ${activities}">
+        <td th:text="${activity.title}"></td>
+        <td th:text="${activity.city}"></td>
+        <td th:text="${#temporals.format(activity.startsAt, 'dd.MM.yyyy HH:mm')}"></td>
+        <td th:text="${activity.capacity}"></td>
+    </tr>
+</table>
+</body>
+</html>
