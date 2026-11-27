@@ -7,6 +7,7 @@ import com.cityconnect.main.participation.dto.ParticipationResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @FeignClient(name = "participation-service", url = "${participation.service.url}")
@@ -22,6 +23,7 @@ public interface ParticipationClient {
     ActivitySummaryResponse getSummary(@PathVariable("activityId") UUID activityId);
 
 
-
+@GetMapping("/users/{userId}/registrations")
+    List<ParticipationResponse> getForUser(@PathVariable("userId") UUID userId);
 
 }

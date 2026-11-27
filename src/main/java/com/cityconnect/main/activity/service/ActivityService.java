@@ -2,6 +2,7 @@ package com.cityconnect.main.activity.service;
 
 import com.cityconnect.main.activity.model.Activity;
 import com.cityconnect.main.activity.repository.ActivityRepository;
+import com.cityconnect.main.exception.ActivityNotFoundException;
 import com.cityconnect.main.user.model.User;
 import com.cityconnect.main.user.service.UserService;
 import com.cityconnect.main.web.dto.ActivityRequest;
@@ -50,6 +51,11 @@ public class ActivityService {
     public List<Activity> getUpcomingForUser(UUID userId) {
         User user = userService.getById(userId);
         return activityRepository.findUpcomingByCity(user.getCity(), LocalDateTime.now());
+    }
+    @Transactional(readOnly = true)
+    public Activity getById(UUID id) {
+        return activityRepository.findById(id)
+                .orElseThrow(() -> new ActivityNotFoundException("Activity not found."));
     }
 }
 
