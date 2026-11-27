@@ -7,14 +7,15 @@
 <body>
 <h1>CityConnect</h1>
 <div th:if="${username == null}">
-  <a th:href="@{/login}">Log in</a>
-  <a th:href="@{/register}">Register</a>
+    <a th:href="@{/login}">Log in</a>
+    <a th:href="@{/register}">Register</a>
 </div>
 <div th:if="${username != null}">
-  <p th:text="'Welcome, ' + ${username}"></p>
-  <form th:action="@{/logout}" method="post">
-    <button type="submit">Log out</button>
-  </form>
+    <p th:text="'Welcome, ' + ${username}"></p>
+    <a th:href="@{/activities}">Activities</a>
+    <form th:action="@{/logout}" method="post">
+        <button type="submit">Log out</button>
+    </form>
 </div>
 
 </body>

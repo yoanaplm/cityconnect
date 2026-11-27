@@ -1,15 +1,19 @@
 package com.cityconnect.main.user.service;
 
 import com.cityconnect.main.exception.UserAlreadyExistsException;
+import com.cityconnect.main.exception.UserNotFoundException;
 import com.cityconnect.main.user.model.User;
 import com.cityconnect.main.user.model.UserRole;
 import com.cityconnect.main.user.repository.UserRepository;
 import com.cityconnect.main.web.dto.RegisterRequest;
-import jakarta.transaction.Transactional;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.UUID;
 
 @Service
 public class UserService {
@@ -58,5 +62,10 @@ public class UserService {
 
         userRepository.save(user);
         log.info("Registered new user {}", user.getUsername());
+    }
+    @Transactional(readOnly = true)
+    public User getById(UUID id) {
+        return userRepository.findById(id)
+                .orElseThrow(() -> new UserNotFoundException("User not found."));
     }
 }

@@ -12,7 +12,7 @@ import java.util.UUID;
 public interface ActivityRepository extends JpaRepository<Activity, UUID> {
 
 
-    @Query("SELECT a FROM Activity a WHERE a.city = :city AND a.startsAt > :now ORDER BY a.startsAt ASC")
+    @Query("SELECT a FROM Activity a WHERE LOWER(a.city) = LOWER(:city) AND a.startsAt > :now ORDER BY a.startsAt ASC")
     List<Activity> findUpcomingByCity(@Param("city") String city, @Param("now") LocalDateTime now);
 
     @Query("SELECT a FROM Activity a WHERE a.startsAt > :now ORDER BY a.startsAt ASC")

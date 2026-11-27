@@ -2,15 +2,16 @@ package com.cityconnect.main.activity.service;
 
 import com.cityconnect.main.activity.model.Activity;
 import com.cityconnect.main.activity.repository.ActivityRepository;
+import com.cityconnect.main.user.model.User;
+import com.cityconnect.main.user.service.UserService;
 import com.cityconnect.main.web.dto.ActivityRequest;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class ActivityService {
@@ -18,9 +19,11 @@ public class ActivityService {
     private static final Logger log = LoggerFactory.getLogger(ActivityService.class);
 
     private final ActivityRepository activityRepository;
+    private final UserService userService;
 
-    public ActivityService(ActivityRepository activityRepository) {
+    public ActivityService(ActivityRepository activityRepository, UserService userService) {
         this.activityRepository = activityRepository;
+        this.userService = userService;
     }
 
     @Transactional
@@ -44,9 +47,9 @@ public class ActivityService {
     }
 
     @Transactional(readOnly = true)
-    public List<Activity> getUpcomingForCity(String city) {
-        return activityRepository.findUpcomingByCity(city, LocalDateTime.now());
-
+    public List<Activity> getUpcomingForUser(UUID userId) {
+        User user = userService.getById(userId);
+        return activityRepository.findUpcomingByCity(user.getCity(), LocalDateTime.now());
     }
 }
 

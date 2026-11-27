@@ -9,32 +9,32 @@
 <a th:href="@{/admin/activities}">Back</a>
 
 <form th:action="@{/admin/activities}" th:object="${activityRequest}" method="post">
-  <div>
-    <label for="title">Tittle</label>
-    <input type="text" id="title" th:field="*{title}" >
-    <p th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></p>
-  </div>
-  <div>
-    <label for="description">Description</label>
-    <textarea id="description" th:field="*{description}"></textarea>
-    <p th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></p>
-  </div>
-  <div>
-    <label for="city">City</label>
-    <input id="city" type="text" th:field="*{city}">
-    <p th:if="${#fields.hasErrors('city')}" th:errors="*{city}"></p>
-  </div>
-  <div>
-    <label for="startsAt">Starts at</label>
-    <input id="startsAt" type="datetime-local" th:field="*{startsAt}">
-    <p th:if="${#fields.hasErrors('startsAt')}" th:errors="*{startsAt}"></p>
-  </div>
-  <div>
-    <label for="capacity">Capacity</label>
-    <input id="capacity" type="number" th:field="*{capacity}">
-    <p th:if="${#fields.hasErrors('capacity')}" th:errors="*{capacity}"></p>
-  </div>
-  <button type="submit">Create</button>
+    <div>
+        <label for="title">Tittle</label>
+        <input type="text" id="title" th:field="*{title}">
+        <p th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></p>
+    </div>
+    <div>
+        <label for="description">Description</label>
+        <textarea id="description" th:field="*{description}"></textarea>
+        <p th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></p>
+    </div>
+    <div>
+        <label for="city">City</label>
+        <input id="city" type="text" th:field="*{city}">
+        <p th:if="${#fields.hasErrors('city')}" th:errors="*{city}"></p>
+    </div>
+    <div>
+        <label for="startsAt">Starts at</label>
+        <input id="startsAt" type="datetime-local" th:field="*{startsAt}">
+        <p th:if="${#fields.hasErrors('startsAt')}" th:errors="*{startsAt}"></p>
+    </div>
+    <div>
+        <label for="capacity">Capacity</label>
+        <input id="capacity" type="number" th:field="*{capacity}">
+        <p th:if="${#fields.hasErrors('capacity')}" th:errors="*{capacity}"></p>
+    </div>
+    <button type="submit">Create</button>
 </form>
 
 </body>
